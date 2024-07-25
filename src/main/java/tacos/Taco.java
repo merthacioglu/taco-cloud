@@ -12,7 +12,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
+import org.springframework.data.rest.core.annotation.RestResource;
 
+@RestResource(rel = "tacos", path = "tacos")
 @Data
 @Entity
 public class Taco {

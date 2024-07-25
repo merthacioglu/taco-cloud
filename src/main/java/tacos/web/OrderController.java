@@ -91,52 +91,8 @@ public class OrderController {
     return orderRepo.save(order);
   }
 
-  @PatchMapping(path="/{orderId}", consumes="application/json")
-  public ResponseEntity<TacoOrder> patchOrder(@PathVariable("orderId") Long orderId,
-                                              @RequestBody TacoOrder patch) {
-    Optional<TacoOrder> orderOptional = orderRepo.findById(orderId);
-    if (orderOptional.isPresent()) {
-      TacoOrder order = orderOptional.get();
-      if (patch.getDeliveryName() != null) {
-        order.setDeliveryName(patch.getDeliveryName());
-      }
-      if (patch.getDeliveryStreet() != null) {
-        order.setDeliveryStreet(patch.getDeliveryStreet());
-      }
-      if (patch.getDeliveryCity() != null) {
-        order.setDeliveryCity(patch.getDeliveryCity());
-      }
-      if (patch.getDeliveryState() != null) {
-        order.setDeliveryState(patch.getDeliveryState());
-      }
-      if (patch.getDeliveryZip() != null) {
-        order.setDeliveryZip(patch.getDeliveryZip());
-      }
-      if (patch.getCcNumber() != null) {
-        order.setCcNumber(patch.getCcNumber());
-      }
-      if (patch.getCcExpiration() != null) {
-        order.setCcExpiration(patch.getCcExpiration());
-      }
-      if (patch.getCcCVV() != null) {
-        order.setCcCVV(patch.getCcCVV());
-      }
-      return ResponseEntity.ok(orderRepo.save(order));
-    } else {
-      return ResponseEntity.notFound().build();
-    }
 
 
-  }
-
-
-  @DeleteMapping("/{orderId}")
-  @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void deleteOrder(@PathVariable("orderId") Long orderId) {
-    try {
-      orderRepo.deleteById(orderId);
-    } catch (EmptyResultDataAccessException e) {}
-  }
 
   /*
   @GetMapping
