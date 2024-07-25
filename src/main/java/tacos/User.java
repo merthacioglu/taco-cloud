@@ -16,14 +16,14 @@ import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data
-@NoArgsConstructor(access=AccessLevel.PRIVATE, force=true)
+@NoArgsConstructor(force=true)
 @RequiredArgsConstructor
 public class User implements UserDetails {
 
   private static final long serialVersionUID = 1L;
 
   @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
   private Long id;
   
   private final String username;
